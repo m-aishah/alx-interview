@@ -15,7 +15,7 @@ def island_perimeter(grid):
     '''
     # If the grid is empty, there is no island, perimeter = 0.
     # if grid is not a list return 0.
-    if not grid or isinstance(grid) != list:
+    if not grid or not isinstance(grid, list):
         return 0
 
     # Get the width and height of the grid.
