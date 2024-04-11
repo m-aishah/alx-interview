@@ -21,17 +21,16 @@ def island_perimeter(grid):
     # Get the width and height of the grid.
     width, height = len(grid), len(grid[0])
     # Start perimeter at 0.
-    perimeter = 0
+    islands = 0
+    neighbors = 0
     # Traverse through the grid index by index.
     for i in range(width):
         for j in range(height):
             # If 1, add number of 0s around 1 to perimeter.
             if grid[i][j] == 1:
-                if i in (0, width - 1):
-                    perimeter += 1
-                if j in (0, height - 1):
-                    perimeter += 1
-                perimeter = perimeter + (1 - grid[i][j - 1]) + (
-                    1 - grid[i][j + 1]) + (1 - grid[i - 1][j]) + (
-                            1 - grid[i + 1][j])
-    return perimeter
+                islands += 1
+                if i - 1 >= 0 and grid[i - 1][j]:
+                    neighbors += 1
+                if j - 1 >= 0 and grid[i][j - 1]:
+                    neighbors += 1
+    return islands * 4 - neighbors * 2
