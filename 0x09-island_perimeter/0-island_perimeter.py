@@ -14,7 +14,8 @@ def island_perimeter(grid):
     Returns: the perimeter of the island in grid.
     '''
     # If the grid is empty, there is no island, perimeter = 0.
-    if not grid:
+    # if grid is not a list return 0.
+    if not grid or isinstance(grid) != list:
         return 0
 
     # Get the width and height of the grid.
@@ -26,6 +27,10 @@ def island_perimeter(grid):
         for j in range(height):
             # If there is land, add the number of 0s around the land to perimeter.
             if grid[i][j] == 1:
+                if i in (0, width - 1):
+                    perimeter += 1
+                if j in (0, height - 1):
+                    perimeter += 1
                 perimeter = perimeter + int(not grid[i][j - 1]) + int(
                     not grid[i][j + 1]) + int(not grid[i - 1][j]) + int(not grid[i + 1][j])
     return perimeter
