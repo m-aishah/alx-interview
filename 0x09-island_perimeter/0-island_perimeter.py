@@ -25,12 +25,13 @@ def island_perimeter(grid):
     # Traverse through the grid index by index.
     for i in range(width):
         for j in range(height):
-            # If there is land, add the number of 0s around the land to perimeter.
+            # If 1, add number of 0s around 1 to perimeter.
             if grid[i][j] == 1:
                 if i in (0, width - 1):
                     perimeter += 1
                 if j in (0, height - 1):
                     perimeter += 1
-                perimeter = perimeter + int(not grid[i][j - 1]) + int(
-                    not grid[i][j + 1]) + int(not grid[i - 1][j]) + int(not grid[i + 1][j])
+                perimeter = perimeter + (1 - grid[i][j - 1]) + (
+                    1 - grid[i][j + 1]) + (1 - grid[i - 1][j]) + (
+                            1 - grid[i + 1][j])
     return perimeter
